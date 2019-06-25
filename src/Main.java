@@ -13,14 +13,14 @@ class MaxFlow
       caminho */
     boolean bfs(int rGraph[][], int s, int t, int parent[])
     {
-        // Cria um array (visited[]) e marca todos os vertices os vertices que
+        // Cria um array (visited[]) e marca todos os vertices  que
         // não foram visitados
         boolean visited[] = new boolean[V];
         for(int i=0; i<V; ++i)
             visited[i]=false;
 
-        // cria uma fila(queue), enfileira o vertice da fonte e marca
-        // o vertice da fonte como visitado
+        // cria uma fila(queue), enfileira o vertice da origem e marca
+        // o vertice da origem como visitado
         LinkedList<Integer> queue = new LinkedList<Integer>();
         queue.add(s);
         visited[s] = true;
@@ -33,6 +33,7 @@ class MaxFlow
 
             for (int v=0; v<V; v++)
             {
+                //se o nó não tiver sido visitado e o fluxo for maior que 0
                 if (visited[v]==false && rGraph[u][v] > 0)
                 {
                     queue.add(v);
@@ -66,7 +67,7 @@ class MaxFlow
             for (v = 0; v < V; v++)
                 rGraph[u][v] = graph[u][v];
 
-        //Esta matriz é preenchida pelo BFS e para armazenar o caminho
+        //Esta matriz é preenchida pelo BFS  para armazenar o caminho
         int parent[] = new int[V];
 
         int max_flow = 0;  // Não há fluxo inicialmente
