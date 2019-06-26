@@ -14,7 +14,7 @@ class MaxFlow
     boolean bfs(int rGraph[][], int s, int t, int parent[])
     {
         // Cria um array (visited[]) e marca todos os vertices  que
-        // não foram visitados
+        // não foram visitados, para evitar que volte ao mesmo nó
         boolean visited[] = new boolean[V];
         for(int i=0; i<V; ++i)
             visited[i]=false;
@@ -22,23 +22,23 @@ class MaxFlow
         // cria uma fila(queue), enfileira o vertice da origem e marca
         // o vertice da origem como visitado
         LinkedList<Integer> queue = new LinkedList<Integer>();
-        queue.add(s);
-        visited[s] = true;
-        parent[s]=-1;
+        queue.add(s); //adicionando o nó origem a fila
+        visited[s] = true;// colocando o nó origem como visitado
+        parent[s]=-1;// marca o caminho
 
         // começa o loop BFS(busca em largura)
         while (queue.size()!=0)
         {
-            int u = queue.poll();
-
+            int u = queue.poll(); //Retorna e remove a cabeça da fila
+            //System.out.println(u);
             for (int v=0; v<V; v++)
             {
                 //se o nó não tiver sido visitado e o fluxo for maior que 0
                 if (visited[v]==false && rGraph[u][v] > 0)
                 {
-                    queue.add(v);
-                    parent[v] = u;
-                    visited[v] = true;
+                    queue.add(v); //colando os nó não visitados na fila
+                    parent[v] = u; //marcando o caminho de 's'até 't'
+                    visited[v] = true; //marcando o nó como visitado
                 }
             }
         }
