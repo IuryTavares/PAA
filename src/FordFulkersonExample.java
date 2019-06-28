@@ -159,7 +159,7 @@ public class FordFulkersonExample {
         }
 
         private long dfs(int node, long flow) {
-            // At sink node, return augmented path flow.
+            // No nó destino, retorna o fluxo do caminho aumentante.
             if (node == t) return flow;
 
             // Marque o nó atual como visitado.
@@ -170,8 +170,8 @@ public class FordFulkersonExample {
                 if (edge.remainingCapacity() > 0 && visited[edge.to] != visitedToken) {
                     long bottleNeck = dfs(edge.to, min(flow, edge.remainingCapacity()));
 
-                    // If we made it from s -> t (a.k.a bottleNeck > 0) then
-                    // augment flow with bottleneck value.
+                    // Se fizermos isso de s -> t (a.k.a bottleNeck> 0),
+                    // aumente o fluxo com o valor de gargalo.
                     if (bottleNeck > 0) {
                         edge.augment(bottleNeck);
                         return bottleNeck;
@@ -222,6 +222,6 @@ public class FordFulkersonExample {
         List<Edge>[] resultGraph = solver.getGraph();
 
         // Displays all edges part of the resulting residual graph.
-        //for (List<Edge> edges : resultGraph) for (Edge e : edges) System.out.println(e.toString(s, t));
+       // for (List<Edge> edges : resultGraph) for (Edge e : edges) System.out.println(e.toString(s, t));
     }
 }
