@@ -23,7 +23,7 @@ class MaxFlow
         // o vertice da origem como visitado
         LinkedList<Integer> queue = new LinkedList<Integer>();
         queue.add(s); //adicionando o nó origem a fila
-        visited[s] = true;// colocando o nó origem como visitado
+        visited[s] = true;// colocando o nó origem como visitado, s = 0 na origem
         parent[s]=-1;// marca o caminho
 
         // começa o loop BFS(busca em largura)
@@ -80,9 +80,11 @@ class MaxFlow
             // das faixas ao longo do caminho preechido pelo BFS
             // ou seja, encontra o fluxo maximo atraves do caminho encontrado
             int path_flow = Integer.MAX_VALUE;
+            //System.out.println("%d",  path_flow);
             for (v=t; v!=s; v=parent[v])
             {
                 u = parent[v];
+                //System.out.println(u);
                 path_flow = Math.min(path_flow, rGraph[u][v]);
             }
 
